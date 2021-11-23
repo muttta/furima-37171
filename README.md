@@ -33,34 +33,33 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :record
+- has_one    :record
 
 
 ## records テーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| user        | references | null: false, foreign_kye: true |
-| item        | references | null: false, foreign_key: true |
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| users_id     | references | null: false, foreign_kye: true |
+| items_id     | references | null: false, foreign_key: true |
 
 ### Association
 - has_many   :users
 - belongs_to :item
-- belongs_to :record
+- has_one    :addresses
 
 
 ## addresses テーブル
 
-| Column           | Type     | Options             |
-| ---------------- | -------- | ------------------- |
-| postal_code      | integer  | null: false         |
-| prefectures      | string   | null: false
-| municipalities   | string   | null: false
-| address          | string   | null: false
-| building         | string   |
-| phone_num        | integer  | null: false
+| Column           | Type       | Options                       |
+| ---------------- | ---------- | ----------------------------- |
+| postal_code      | integer    | null: false                   |
+| prefectures      | string     | null: false                   |
+| municipalities   | string     | null: false                   |
+| address          | string     | null: false                   |
+| building         | string     | null: false                   |
+| phone_num        | integer    | null: false                   |
+| records_id       | references | null: false, foreign_key: true|
 
 ### Association
-- has_many   :users
-- belongs_to :item
 - belongs_to :record
