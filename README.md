@@ -30,6 +30,7 @@
 | delivery_period_id  | integer    | null: false                    |
 | delivery_fee_id     | integer    | null: false                    |
 | shipment_source_id  | integer    | null: false                    |
+| user                | references | null: false                    |
 
 ### Association
 - belongs_to :user
