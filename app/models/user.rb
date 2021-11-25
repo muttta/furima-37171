@@ -4,12 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :items
-  has_many :records
+  #has_many :items
+  #has_many :records
 
   validates :nickname,        presence: true
-  validates :last_name,       presence: true, format: {with: (/\A[ぁ-んァ-ヶー-龥々]+\z/), message: "は全角(漢字・ひらがな・カタカナ)で入力してください"}
-  validates :first_name,      presence: true, format: {with: (/\A[ぁ-んァ-ヶー-龥々]+\z/), message: "は全角(漢字・ひらがな・カタカナ)で入力してください"}
+  validates :last_name,       presence: true, format: {with: (/\A[ぁ-んァ-ヶー-龥々ー]+\z/), message: "は全角(漢字・ひらがな・カタカナ)で入力してください"}
+  validates :first_name,      presence: true, format: {with: (/\A[ぁ-んァ-ヶー-龥々ー]+\z/), message: "は全角(漢字・ひらがな・カタカナ)で入力してください"}
   validates :last_name_kana,  presence: true, format: {with: (/\A[ァ-ヶーー]+\z/), message: "は全角(カタカナ)で入力してください"}
   validates :first_name_kana, presence: true, format: {with: (/\A[ァ-ヶーー]+\z/), message: "は全角(カタカナ)で入力してください"}
   validates :birth,           presence: true
