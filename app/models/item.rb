@@ -7,12 +7,11 @@ class Item < ApplicationRecord
   belongs_to       :shipment_source
   belongs_to       :user
   has_one          :record
-  has_one_attached :image
+  has_one_attached :image 
 
-  validates :item_name, :item_price, :description, :category_id, :status_id, :delivery_period_id, :delivery_fee_id, presence: true
+  validates :item_name, :item_price, :description, :category_id, :status_id, :delivery_period_id, :delivery_fee_id, :shipment_source_id, :image, presence: true
   validates :category_id, :status_id, :delivery_period_id, :delivery_fee_id, numericality: {other_than: 1, message: "can't be blank"}
 
-  validates :item_price            
-  validates :description          
+  validates :item_price, numericality: {in: 300..999999999, message: "は300円~999,999,999円の間で設定して下さい"}
 
 end
