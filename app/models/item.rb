@@ -11,7 +11,9 @@ class Item < ApplicationRecord
 
   validates :item_name, :item_price, :description, :category_id, :status_id, :delivery_period_id, :delivery_fee_id, :shipment_source_id, :image, presence: true
   validates :category_id, :status_id, :delivery_period_id, :delivery_fee_id, numericality: {other_than: 1, message: "can't be blank"}
-
-  validates :item_price, numericality: {in: 300..999999999, message: "は300円~999,999,999円の間で設定して下さい"}
+  validates :item_price, numericality: {with: (/\A[0-9]+\z/), message: "は半角数字で入力してください"}
+  validates_inclusion_of :item_price, in:300..9999999, message: "は300円~9,999,999円の間で設定して下さい"
+  #validates :item_price, numericality: {in: 300..9999999, message: "は300円~9,999,999円の間で設定して下さい"}
+ # , format: {with: (/\A[0-9];\z/), message: "は半角数字で入力してください"}
 
 end
