@@ -6,8 +6,8 @@ class Item < ApplicationRecord
   belongs_to       :status
   belongs_to       :shipment_source
   belongs_to       :user
-  #has_one          :record
-  has_one_attached :image 
+  # has_one          :record
+  has_one_attached :image
 
   validates :item_name, :item_price, :description, :category_id, :status_id, :delivery_period_id, :delivery_fee_id, :shipment_source_id, :image, presence: true
   validates :category_id, :status_id, :delivery_period_id, :delivery_fee_id, :shipment_source_id, numericality: {other_than: 1, message: "は--以外から選択してください"}
