@@ -15,6 +15,9 @@ before_action :authenticate_user!, except: [:index]
     else
       render :new
     end
+    def show
+      @item = Item.find(params[:id])
+    end
   end
 
   private
@@ -23,4 +26,5 @@ before_action :authenticate_user!, except: [:index]
     permit(:item_name, :item_price, :description, :category_id, :status_id, :delivery_period_id, :delivery_fee_id, :shipment_source_id, :image).
     merge(user_id: current_user.id)
   end
+
 end 
