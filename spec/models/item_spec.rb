@@ -37,25 +37,50 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
+    it 'category_idが1では登録ができない' do
+      @item.category_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category は--以外から選択してください")
+    end
     it 'status_idが空では登録ができない' do
       @item.status_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Status can't be blank")
+     end
+     it 'status_idが1では登録ができない' do
+      @item.status_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Status は--以外から選択してください")
      end
      it 'delivery_period_idが空では登録ができない' do
       @item.delivery_period_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery period can't be blank")
     end
+    it 'delivery_period_idが1では登録ができない' do
+      @item.delivery_period_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Delivery period は--以外から選択してください")
+    end
     it 'delivery_fee_idが空では登録ができない' do
       @item.delivery_fee_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
      end
+     it 'delivery_fee_idが1では登録ができない' do
+      @item.delivery_fee_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Delivery fee は--以外から選択してください")
+     end
      it 'shipment_source_idが空では登録ができない' do
       @item.shipment_source_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipment source can't be blank")
+    end
+    it 'shipment_source_idが1では登録ができない' do
+      @item.shipment_source_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipment source は--以外から選択してください")
     end
     it 'item_priceが空では登録ができない' do
       @item.item_price = ''
