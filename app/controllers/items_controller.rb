@@ -18,6 +18,22 @@ before_action :authenticate_user!, except: [:index, :show]
   end
   def show
       @item = Item.find(params[:id])
+  end
+  def edit
+    @item = Item.find(params[:id])
+    if (@item.record.present?) || (current_user.id != @item.user_id)
+      redirect_to root_path
+    end
+  end
+  def update
+    @item = Item.find(params[:id]) 
+    if (@item.record.present?) || (current_user.id != @item.user_id)
+      redirect_to root_path
+    end
+    if @item.update(item_params)
+     redirect_to root_path
+    else
+      render :edit
     end
   end
 
@@ -27,3 +43,4 @@ before_action :authenticate_user!, except: [:index, :show]
     permit(:item_name, :item_price, :description, :category_id, :status_id, :delivery_period_id, :delivery_fee_id, :shipment_source_id, :image).
     merge(user_id: current_user.id)
   end
+end
