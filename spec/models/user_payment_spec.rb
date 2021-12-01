@@ -44,6 +44,11 @@ RSpec.describe UserPayment, type: :model do
         @user_payment.valid?
         expect(@user_payment.errors.full_messages).to include("Shipment source can't be blank")
       end
+      it 'shipment_source_idが1のとき' do
+        @user_payment.shipment_source_id = '1'
+        @user_payment.valid?
+        expect(@user_payment.errors.full_messages).to include("Shipment source は--以外から選択してください")
+      end
       it 'cityが空のとき' do
         @user_payment.city = ''
         @user_payment.valid?
