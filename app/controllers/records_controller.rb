@@ -1,12 +1,11 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!
+  before_action :item_id
   def index
-    @item = Item.find(params[:item_id])
       user_redirect
     @user_payment = UserPayment.new
   end
   def create
-    @item = Item.find(params[:item_id])
       user_redirect
     @user_payment = UserPayment.new(record_params)
     if @user_payment.valid?
@@ -32,9 +31,12 @@ class RecordsController < ApplicationController
     )
   end
   def user_redirect
-    record = Record.select("item_id")
     if (@item.record.present?) || (current_user.id == @item.user_id)
       redirect_to root_path
+    end
   end
-end
+  def item_id
+    @item = Item.find(params[:item_id])
+  end
+
 end
