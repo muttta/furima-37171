@@ -32,8 +32,9 @@ class RecordsController < ApplicationController
     )
   end
   def user_redirect
-    redirect_to root_path unless current_user.id == @item.user_id
-    redirect_to root_path if current_user.id == @item.user_id
+    record = Record.select("item_id")
+    if (@item.record.present?) || (current_user.id == @item.user_id)
+      redirect_to root_path
   end
-
+end
 end
