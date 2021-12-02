@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 before_action :authenticate_user!, except: [:index, :show]
-before_action :redirect_root_path, only: [:edit, :update]
 before_action :set_item, only: [:edit, :update, :show]
+before_action :redirect_root_path, only: [:edit, :update]
+
   def index
     @items = Item.order("created_at DESC")
   end
@@ -40,14 +41,12 @@ before_action :set_item, only: [:edit, :update, :show]
     permit(:item_name, :item_price, :description, :category_id, :status_id, :delivery_period_id, :delivery_fee_id, :shipment_source_id, :image).
     merge(user_id: current_user.id)
   end
+  def set_item
+    @item = Item.find(params[:id]) 
+  end
   def redirect_root_path
-    set_item
     if (@item.record.present?) || (current_user.id != @item.user_id)
       redirect_to root_path
     end
   end
-  def set_item
-    @item = Item.find(params[:id]) 
-  end
-
 end
